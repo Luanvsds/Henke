@@ -1,0 +1,401 @@
+:root  {
+  color-scheme: dark;
+  --background: #02060c;
+  --foreground: #f7fbff;
+  --accent: #76e1ff;
+  --hero-image: url("../images/henke-02.jpg");
+  --radius: clamp(23px, 2.5vw, 34px);
+}
+
+*,*::before,*::after  {
+  box-sizing:border-box
+}
+
+html  {
+  scroll-behavior:smooth
+}
+
+body  {
+  margin:0;
+  min-width:320px;
+  min-height:100svh;
+  background:var(--background);
+  color:var(--foreground);
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+a  {
+  color:inherit
+}
+
+a:focus-visible  {
+  outline:2px solid #96eaff;
+  outline-offset:5px;
+  border-radius:2px
+}
+
+.hero  {
+  position:relative;
+  isolation:isolate;
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  padding:clamp(12px,3vh,30px) clamp(12px,3vw,44px);
+  overflow:hidden;
+  background:radial-gradient(ellipse at 78% 24%,rgba(26,107,159,.17),transparent 54%),              radial-gradient(ellipse at 16% 88%,rgba(19,84,128,.12),transparent 60%),              #02060c;
+}
+
+.hero::before  {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.24;
+  background:linear-gradient(130deg,transparent 36%,rgba(103,187,236,.035) 45%,transparent 51%);
+}
+
+/* Um só container reúne logo, navegação, headline, fundo e efeito. */ .hero-panel  {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  /* ~90% of the available viewport area (96% width × 94% height). */   width:min(96vw,1900px);
+  height:min(94svh,1250px);
+  min-height:0;
+  padding:clamp(23px,3.2vw,51px) clamp(24px,3.7vw,60px) clamp(21px,2.4vw,31px);
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  background:     linear-gradient(#03111b,#03111b) padding-box,     linear-gradient(132deg,rgba(169,239,255,.64) 0%,rgba(33,131,195,.27) 35%,rgba(10,73,133,.24) 62%,rgba(137,226,255,.50) 100%) border-box;
+  box-shadow:0 28px 110px rgba(0,0,0,.48),0 0 65px rgba(1,76,140,.12),              inset 0 0 25px rgba(74,181,240,.035);
+}
+
+.hero-panel::before  {
+  content:'';
+  position:absolute;
+  inset:1px;
+  z-index:0;
+  border-radius:calc(var(--radius) - 2px);
+  background-image:var(--hero-image);
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  pointer-events:none;
+}
+
+.hero-panel::after  {
+  content:'';
+  position:absolute;
+  inset:1px;
+  z-index:2;
+  border-radius:calc(var(--radius) - 2px);
+  pointer-events:none;
+  background:     linear-gradient(90deg,rgba(0,3,8,.18) 0%,rgba(0,3,8,.04) 43%,transparent 72%),     linear-gradient(180deg,rgba(0,4,8,.04),transparent 43%,rgba(0,3,8,.12) 100%);
+  box-shadow:inset 0 0 32px rgba(95,206,255,.085);
+}
+
+.fluid-layer  {
+  position:absolute;
+  inset:1px;
+  z-index:1;
+  overflow:hidden;
+  pointer-events:none;
+  visibility:hidden;
+  border-radius:calc(var(--radius) - 2px);
+}
+
+.fluid-layer.is-ready  {
+  visibility:visible
+}
+
+.fluid-frame  {
+  position:absolute;
+  inset:0;
+  overflow:hidden
+}
+
+.fluid-layer canvas  {
+  position:absolute;
+  left:-10%;
+  top:-10%;
+  width:120%;
+  height:120%;
+  display:block;
+}
+
+/* Geada dendrítica: se sobrepõe à simulação, mas não recebe eventos.
+   Área e layout permanecem exatamente como na V8. */ .fluid-layer canvas.ice-trail  {
+  z-index: 2;
+  position: absolute;
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: normal;
+}
+
+.hero-header,.hero-content,.hero-footer  {
+  position:relative;
+  z-index:3
+}
+
+.hero-header  {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:clamp(8px,2vw,28px);
+  min-width:0;
+}
+
+.brand  {
+  display:block;
+  flex:0 1 230px;
+  width:clamp(110px,17vw,230px);
+  min-width:105px;
+  text-decoration:none
+}
+
+.brand img  {
+  width:100%;
+  height:auto;
+  display:block
+}
+
+.hero-nav  {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(9px,2vw,28px);
+  white-space:nowrap;
+  flex:0 0 auto;
+  padding-top:10px;
+}
+
+.hero-nav a  {
+  display:block;
+  font-size:clamp(11px,.95vw,13px);
+  letter-spacing:.025em;
+  text-decoration:none;
+  line-height:1.2;
+  font-weight:500;
+  transition:opacity .25s ease,color .25s ease;
+}
+
+.hero-nav a:hover  {
+  opacity:.70;
+  color:#b9f0ff
+}
+
+.hero-content  {
+  align-self:center;
+  max-width:min(720px,62%);
+  padding:clamp(15px,2vw,30px) 0 22px;
+}
+
+.eyebrow  {
+  margin:0 0 clamp(12px,1.8vw,22px);
+  color:rgba(248,252,255,.84);
+  font-size:clamp(10px,.94vw,13px);
+  line-height:1.35;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.eyebrow span  {
+  padding:0 .2em
+}
+
+h1  {
+  margin:0;
+  max-width:10.4ch;
+  font-size:clamp(58px,7.15vw,120px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  font-weight:600;
+  text-wrap:balance;
+  text-shadow:0 3px 25px rgba(0,0,0,.18);
+}
+
+.supporting  {
+  max-width:400px;
+  margin:clamp(19px,2.6vw,31px) 0 0;
+  color:rgba(247,251,255,.93);
+  font-size:clamp(15px,1.42vw,20px);
+  line-height:1.31;
+  text-shadow:0 2px 17px rgba(0,0,0,.2);
+}
+
+.hero-footer  {
+  display:flex;
+  align-items:center;
+  font-size:12px;
+  letter-spacing:.01em;
+  opacity:.8
+}
+
+@media (min-width:1600px)  {
+  .hero-content  {
+    max-width:700px
+  }
+
+}
+
+@media (max-width:1000px)  {
+  .hero-panel  {
+    width:96vw;
+    height:94svh
+  }
+
+  .hero-content  {
+    max-width:67%
+  }
+
+  h1  {
+    font-size:clamp(59px,8.2vw,88px)
+  }
+
+  .brand  {
+    flex-basis:190px
+  }
+
+}
+
+@media (max-width:680px)  {
+  :root  {
+    --hero-image: url("../images/henke-03.jpg");
+  }
+
+  .hero  {
+    padding:12px
+  }
+
+  .hero-panel  {
+    width:100%;
+    height:calc(100svh - 24px);
+    min-height:560px;
+    padding:25px clamp(20px,5.4vw,30px) 23px;
+    border-radius:25px;
+  }
+
+  .hero-panel::before  {
+    background-position:center center
+  }
+
+  .hero-panel::after  {
+    background:linear-gradient(180deg,rgba(1,5,11,.09),rgba(1,5,11,.11) 27%,rgba(1,5,11,.46) 65%,rgba(1,5,11,.65) 100%);
+  }
+
+  .brand  {
+    flex:0 1 142px;
+    min-width:99px;
+    width:clamp(104px,30vw,142px)
+  }
+
+  .hero-nav  {
+    gap:clamp(8px,2.3vw,15px);
+    padding-top:5px
+  }
+
+  .hero-nav a  {
+    font-size:11px
+  }
+
+  .hero-content  {
+    align-self:end;
+    max-width:100%;
+    padding:0 0 30px
+  }
+
+  h1  {
+    font-size:clamp(52px,10.8vw,67px);
+    max-width:9.5ch
+  }
+
+  .eyebrow  {
+    white-space:normal;
+    max-width:31ch;
+    margin-bottom:17px;
+    font-size:10px
+  }
+
+  .supporting  {
+    font-size:clamp(15px,3.75vw,18px);
+    max-width:340px;
+    margin-top:21px
+  }
+
+  .hero-footer  {
+    font-size:11px
+  }
+
+}
+
+@media (max-width:375px)  {
+  .hero-panel  {
+    padding-inline:16px;
+    padding-top:21px;
+    padding-bottom:20px
+  }
+
+  .brand  {
+    flex-basis:112px;
+    min-width:96px
+  }
+
+  .hero-nav  {
+    gap:8px
+  }
+
+  .hero-nav a  {
+    font-size:10px
+  }
+
+  h1  {
+    font-size:52px
+  }
+
+  .hero-content  {
+    padding-bottom:22px
+  }
+
+}
+
+@media (max-height:700px) and (min-width:681px)  {
+  .hero-panel  {
+    height:94svh
+  }
+
+  .hero-content  {
+    padding:0
+  }
+
+  h1  {
+    font-size:clamp(55px,6.5vw,92px)
+  }
+
+  .supporting  {
+    margin-top:17px
+  }
+
+}
+
+@media (prefers-reduced-motion:reduce)  {
+  html  {
+    scroll-behavior:auto
+  }
+
+  .hero-nav a  {
+    transition:none
+  }
+
+  .fluid-layer  {
+    display:none
+  }
+
+}
+

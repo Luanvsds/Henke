@@ -1,0 +1,18 @@
+[
+  {
+    "file": "assets/images/henke-01.png",
+    "sha256": "9c18960ff1ff3da263143aad2abd31ba27b3d29db8285674405c62cd8e33cd2f"
+  },
+  {
+    "file": "assets/images/henke-02.jpg",
+    "sha256": "1a99421abe9a614ed5fd68cc972a9cfe6a1799164394bf466cfef53cfb100ed6"
+  },
+  {
+    "file": "assets/images/henke-03.jpg",
+    "sha256": "6f52d86d06fa3290c05125d6776064464938beb58368abec386dddefe7710337"
+  },
+  {
+    "file": "assets/images/henke-04.png",
+    "sha256": "69ac538bf25d6d35371fa046b7dbc122569c492ee351ba68d1a4b467aac973e2"
+  }
+]

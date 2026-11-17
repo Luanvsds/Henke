@@ -1,0 +1,21 @@
+# Sistema e editores
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências e arquivos locais
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+__pycache__/
+*.pyc
+
+# Pacotes e cópias temporárias
+*.zip
+*.bak
